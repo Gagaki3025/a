@@ -1,0 +1,5 @@
+#!/usr/bin/env php
+<?php
+// Minimal artisan-like stub. Make executable if you want to run it.
+
+echo "Artisan stub. To use full features, install Composer and run `composer create-project laravel/laravel .`\n";
