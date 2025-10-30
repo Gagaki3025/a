@@ -1,0 +1,27 @@
+version: "3"
+services:
+  laravel.test:
+    build:
+      context: "./docker/8.3"
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: "${WWWGROUP}"
+    ports:
+      - "${APP_PORT:-80}:80"
+    volumes:
+      - ".:/var/www/html"
+    depends_on:
+      - pgsql
+  pgsql:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: "${DB_DATABASE}"
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    ports:
+      - "${FORWARD_DB_PORT:-5432}:5432"
+    volumes:
+      - "sail-pgsql:/var/lib/postgresql/data"
+volumes:
+  sail-pgsql:
+    driver: local
