@@ -1,0 +1,7 @@
+postgresql://sail:password@localhost:5432/laravel
+
+./vendor/bin/sail bash
+
+./vendor/bin/sail exec pgsql bash
+psql -U sail -d laravel
+

@@ -22,6 +22,19 @@ services:
       - "${FORWARD_DB_PORT:-5432}:5432"
     volumes:
       - "sail-pgsql:/var/lib/postgresql/data"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL:-admin@example.com}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD:-admin}"
+    ports:
+      - "${FORWARD_PGADMIN_PORT:-5050}:80"
+    depends_on:
+      - pgsql
+    volumes:
+      - "sail-pgadmin:/var/lib/pgadmin"
 volumes:
   sail-pgsql:
+    driver: local
+  sail-pgadmin:
     driver: local
